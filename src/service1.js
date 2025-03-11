@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 
 //דפולטיבית API הגדרת כתובת 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL
+axios.defaults.baseURL = "http://localhost:5179/"
 //תפיסת שגיאות
 axios.interceptors.response.use(function (response) {
   return response;
@@ -13,7 +13,7 @@ axios.interceptors.response.use(function (response) {
 
   if (error.response.status === 401) {
    await console.log("b");
-    // return (window.location.href = "/register");
+    return (window.location.href = "/register");
   }
   else {
 
@@ -70,14 +70,14 @@ export default {
   ,
   addUser: async (IdUsers, Name, Password) => {
     const res = await axios.post(`addUser`, { IdUsers, Name, Password })
-    if (res.data != null){
+    // if (res.data != null){
       console.log(res.data);
       
             saveAccessToken(res.data);
 
-    }
-    else
-      swal("אתה  רשום אצלינו", "הכנס להתחברות", "error")
+    // }
+    // else
+      // swal("אתה  רשום אצלינו", "הכנס להתחברות", "error")
     return res;
   },
   //התחברות
